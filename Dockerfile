@@ -1,17 +1,16 @@
-# Use an official Python runtime as a parent image
+#using python runtime for code 
 FROM python:3.8-slim
 
-# Set the working directory in the container
+#set working dir
 WORKDIR /app
 
-# Copy the Python script and the dataset into the container
+#copy dataset and python script into container
 COPY Code.py paragraphs.txt /app/
 
-# Install any needed dependencies
+#install dependencies
 RUN pip install nltk
 
-# Download NLTK data including the Punkt tokenizer
 RUN python -m nltk.downloader punkt stopwords
 
-# Run the Python script when the container launches
+#run code.py whenever image runs
 CMD ["python", "Code.py"]
